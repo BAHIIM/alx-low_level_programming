@@ -2,59 +2,81 @@
 #include <stdlib.h>
 #include <ctype.h>
 #include <string.h>
-
 /**
- * check_num - Check if a string contains only digits.
- * @str: The string to check.
+ * check_num - check - string there are digit
+ * @str: array str
  *
- * Return: 1 if the string contains only digits, 0 otherwise.
+ * Return: Always 0 (Success)
  */
 int check_num(char *str)
-{
-	unsigned int count = 0;
-
-	while (count < strlen(str))
 	{
-		if (!isdigit(str[count]))
+		/*Declaring variables*/
+		unsigned int count;
+
+
+		count = 0;
+		while (count < strlen(str)) /*count string*/
+
+
 		{
-			return (0);
+			if (!isdigit(str[count])) /*check if str there are digit*/
+			{
+				return (0);
+			}
+
+
+			count++;
 		}
-		count++;
+		return (1);
 	}
-	return (1);
-}
+
 
 /**
- * main - Entry point of the program.
- * @argc: The number of command-line arguments.
- * @argv: An array containing the command-line arguments.
+ * main - Print the name of the program
+ * @argc: Count arguments
+ * @argv: Arguments
  *
- * Return: 0 if successful, 1 if there's an error.
+ * Return: Always 0 (Success)
  */
 int main(int argc, char *argv[])
-{
-	int count;
-	int str_to_int;
-	int sum = 0;
 
-	count = 1;
-	while (count < argc)
+
 	{
-		if (check_num(argv[count]))
+
+
+		/*Declaring variables*/
+		int count;
+		int str_to_int;
+		int sum = 0;
+
+
+		count = 1;
+		while (count < argc) /*Goes through the whole array*/
 		{
-			str_to_int = atoi(argv[count]); /* Convert string to int */
-			sum += str_to_int;
-		}
-		else
-		{
-			printf("Error: Argument '%s' is not a valid integer.\n", argv[count]);
-			return (1);
+			if (check_num(argv[count]))
+
+
+			{
+				str_to_int = atoi(argv[count]); /*ATOI --> convert string to int*/
+				sum += str_to_int;
+			}
+
+
+			/*Condition if one of the number contains symbols that are not digits*/
+			else
+			{
+				printf("Error\n");
+				return (1);
+			}
+
+
+			count++;
 		}
 
-		count++;
+
+		printf("%d\n", sum); /*print sum*/
+
+
+		return (0);
 	}
 
-	printf("Sum: %d\n", sum);
-
-	return (0);
-}
